@@ -27,7 +27,7 @@ function Dashboard() {
         return {
           ...doc.data(),
           id: doc.id
-        }
+      }
       });
       setUserCollectionsArray(documents);
     });
@@ -51,13 +51,23 @@ function Dashboard() {
         <div>
             {isAuth && userCollectionsArray.map((userCollection) => {
                 return (
-                <div key={userCollection.id}>
-                    <p>{userCollection.title}</p>
-                    <p>{userCollection.description}</p>
-                    <div>
-                        {userCollection.imageArray}
+                    <div className="border-2 border-blue-700 w-1/2 mx-auto py-10">
+                        <div key={userCollection.id} className='flex flex-col items-center justify-center'>
+                            <div className="flex flex-col items-center justify-center">
+                                <p className="text-4xl mb-4"><span className="text-blue-500 font-bold px-4">Title: </span>{userCollection.title}</p>
+                                <p className="text-2xl mb-4"><span className="text-blue-500 font-bold px-4">Description: </span>{userCollection.description}</p>
+                            </div>
+                            <div className="flex items-center justify-center border-2 border-blue-400 rounded py-4 mx-10">
+                                {userCollection.imageArray.map((image) => {
+                                    return (
+                                        <div key={image} className="w-1/4 mx-4">
+                                            <img src={image} alt="Collection item" />
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
                     </div>
-                </div>
                 )
             })}
         </div>  
